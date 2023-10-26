@@ -3,7 +3,9 @@ import cn from 'classnames';
 import { Wrapper } from '..';
 import Link from 'next/link';
 import { buttonVariants } from '@/ui';
-import {LoginLink, RegisterLink} from '@kinde-oss/kinde-auth-nextjs/server'
+import { ArrowRight } from 'lucide-react';
+import {RegisterLink, LoginLink} from "@kinde-oss/kinde-auth-nextjs/server";
+
 
 
 interface NavbarProps {
@@ -36,11 +38,11 @@ export const Navbar: React.FC<NavbarProps> = ({ }) => (
                         </LoginLink>
 
                         <RegisterLink className={buttonVariants({
-                           variant: 'ghost',
                            size: 'sm',  
+                           className: 'flex items-center space-x-1.5 px-4  py-2 bg-slate-950 text-cyan-50',
                         })}
                         >
-                           Register
+                           Register <ArrowRight className='ml-1.5 h-5 w-5'/>
                         </RegisterLink>
                     </>
                 </div>
