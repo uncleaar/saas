@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
+  darkMode: ['class'],
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -54,9 +55,34 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))", 
           foreground: "hsl(var(--card-foreground))",
         }
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+
+      keyframes: {
+        "accordion-down": {
+          from: { height: '0px' },
+          to: { height: "var(--radix-accordion-content-height)"},
+        },
+        'accordion-up': {
+          from: { height: "var(--radix-accordion-content-height)"},
+          to: { height: '0px' },
+        },
+      
+      },
+
+      animation: {
+        'accordion-down': 'accordion-down 300ms ease-out',
+        'accordion-up': 'accordion-up 300ms ease-out',
       }
     }
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-animate'),
+    require('@tailwindcss/typography'),
+  ],
 }
 export default config
