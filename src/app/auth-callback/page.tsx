@@ -1,5 +1,6 @@
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect, useRouter, useSearchParams } from "next/navigation";
+import { trpc } from "../_trpc/client";
 
 export default async function Page() {
   const router = useRouter();
@@ -8,9 +9,11 @@ export default async function Page() {
 
   const origin = searchParams.get("origin");
 
-  const api = await fetch("/api/");
-
-  const data = await api.json();
-
-  return <>page</>;
+  const { data, isLoading } = trpc.authCallback.useQuery(undefined, {
+    onSuccess: ({ success }) => {
+      if (success) {
+        router.push(origin ? `/${origin}` : "/dashboard");
+      }
+    },
+  });
 }
