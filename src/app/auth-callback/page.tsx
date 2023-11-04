@@ -15,5 +15,12 @@ export default async function Page() {
         router.push(origin ? `/${origin}` : "/dashboard");
       }
     },
+    onError: (err) => {
+      if (err.data?.code === "UNAUTHORIZED") {
+        router.push("/sing-in");
+      }
+    },
+    retry: true,
+    retryDelay: 500,
   });
 }
