@@ -1,8 +1,8 @@
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { redirect, useRouter, useSearchParams } from "next/navigation";
+"use client";
+import { useRouter, useSearchParams } from "next/navigation";
 import { trpc } from "../_trpc/client";
 
-export default async function Page() {
+const Page = () => {
   const router = useRouter();
 
   const searchParams = useSearchParams();
@@ -23,4 +23,6 @@ export default async function Page() {
     retry: true,
     retryDelay: 500,
   });
-}
+};
+
+export default Page;
