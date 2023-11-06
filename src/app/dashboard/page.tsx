@@ -5,10 +5,11 @@ import { redirect } from "next/navigation";
 
 const Page = async () => {
   const { getUser } = getKindeServerSession();
-
   const user = getUser();
 
-  if (!user.id || !user.email) redirect("/auth-callback?origin=/dashboard");
+  console.log(user, "user");
+
+  if (!user || !user.id) redirect("/auth-callback?origin=dashboard");
 
   const dbUser = await db.user.findFirst({
     where: {
@@ -16,7 +17,7 @@ const Page = async () => {
     },
   });
 
-  if (!dbUser) return redirect("/auth-callback?origin=/dashboard");
+  if (!dbUser) redirect("/auth-callback?origin=dashboard");
 
   return <Dashboard />;
 };
