@@ -1,7 +1,8 @@
-import { Plus } from "lucide-react";
+import { MessageSquare, Plus, Trash, TrashIcon } from "lucide-react";
 import Link from "next/link";
 import React, { FC } from "react";
 import { format } from "date-fns";
+import { Button } from "@/ui";
 
 interface FileProps {
   file: {
@@ -25,11 +26,20 @@ export const File: FC<FileProps> = ({ file }) => {
         </div>
       </Link>
 
-      <div className="px-6 mt-5 grid-cols-3 place-items-center py-2 gap-6 text-xs text-zinc-700">
+      <div className="px-6 mt-5 grid grid-cols-3 place-items-center py-2 gap-6 text-xs text-zinc-700">
         <div className="flex items-center gap-2">
           <Plus className="h-4 w-4" />
           {format(new Date(file.createdAt), "MMM d, yyyy")}
         </div>
+
+        <div className="flex items-center gap-2">
+          <MessageSquare className="h-4 w-4" />
+          mocked
+        </div>
+
+        <Button size="lg" className="w-full" variant="destructive">
+          <Trash className="h-4 w-4" />
+        </Button>
       </div>
     </li>
   );
