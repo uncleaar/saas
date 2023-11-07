@@ -15,7 +15,7 @@ const UploadButton = () => {
       }}
     >
       <DialogTrigger asChild>
-        <Button>Upload PDF</Button>
+        <Button variant="outline">Upload PDF</Button>
       </DialogTrigger>
     </Dialog>
   );
