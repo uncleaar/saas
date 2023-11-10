@@ -10,7 +10,7 @@ export const Files = () => {
   const { data: files, isLoading } = trpc.getUserFiles.useQuery();
 
   return (
-    <div>
+    <>
       {files && files?.length !== 0 ? (
         <ul className="mt-8 grid grid-cols-1 gap-6 divide-y divide-zinc-400 md:grid-cols-2 lg:grid-cols-3">
           {files
@@ -32,6 +32,6 @@ export const Files = () => {
           <p>upload your first pdf</p>
         </div>
       )}
-    </div>
+    </>
   );
 };

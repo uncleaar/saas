@@ -1,9 +1,11 @@
 import { Inter } from "next/font/google";
-import "./globals.css";
-import "@radix-ui/themes/styles.css";
-import { Navbar } from "@/components";
 import Providers from "@/providers/providers";
+import { Navbar } from "@/components";
+import { cn } from "@/lib/utils";
+
 import "react-loading-skeleton/dist/skeleton.css";
+import "@radix-ui/themes/styles.css";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,9 +15,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="light">
       <Providers>
-        <body className={inter.className}>
+        <body
+          className={cn(
+            "min-h-screen font-sans antialiased grainy",
+            inter.className
+          )}
+        >
           <Navbar />
           {children}
         </body>

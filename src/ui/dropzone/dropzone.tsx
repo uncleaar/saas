@@ -6,9 +6,35 @@ import Dropzone from "react-dropzone";
 
 export const UploadDropzone = () => {
   const [isUploading, setIsUploading] = useState(true);
+  const [uploadProgress, setUploadProgress] = useState(0);
+
+  const simulateProgress = (time: number) => {
+    setUploadProgress(0);
+
+    const interval = setInterval(() => {
+      setUploadProgress((prev) => {
+        if (prev >= 95) {
+          clearInterval(interval);
+          return prev;
+        }
+
+        return prev + 5;
+      });
+    }, time);
+
+    return interval;
+  };
 
   return (
-    <Dropzone multiple={false} onDrop={(acceptedFiles) => {}}>
+    <Dropzone
+      multiple={false}
+      onDrop={(acceptedFiles) => {
+        setIsUploading(true);
+        const progressInterval = simulateProgress(500);
+        clearInterval(progressInterval);
+        setUploadProgress(100);
+      }}
+    >
       {({ getRootProps, getInputProps, acceptedFiles }) => (
         <div
           {...getRootProps()}
@@ -37,11 +63,14 @@ export const UploadDropzone = () => {
                 </div>
               )}
 
-              {isUploading && (
+              {isUploading ? (
                 <div className="w-full mt-4 max-w-xs mx-auto">
-                  <Progress value={50} className="h-1 w-full bg-zinc-200" />
+                  <Progress
+                    value={uploadProgress}
+                    className="h-1 w-full bg-zinc-200"
+                  />
                 </div>
-              )}
+              ) : null}
             </label>
           </div>
         </div>
