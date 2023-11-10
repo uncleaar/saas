@@ -1,6 +1,7 @@
 "use client";
 
-import { Button, Dialog, DialogTrigger } from "@/ui";
+import { Button, Dialog, DialogTrigger, UploadDropzone } from "@/ui";
+import { DialogContent } from "@radix-ui/react-dialog";
 import React, { useState } from "react";
 
 const UploadButton = () => {
@@ -14,9 +15,13 @@ const UploadButton = () => {
         }
       }}
     >
-      <DialogTrigger asChild>
-        <Button variant="outline">Upload PDF</Button>
+      <DialogTrigger onClick={() => setIsOpen(true)} asChild>
+        <Button>Upload PDF</Button>
       </DialogTrigger>
+
+      <DialogContent>
+        <UploadDropzone />
+      </DialogContent>
     </Dialog>
   );
 };

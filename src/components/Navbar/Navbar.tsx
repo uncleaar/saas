@@ -62,7 +62,7 @@ export const Navbar: React.FC<NavbarProps> = ({}) => {
                 <Link
                   href="/dashboard"
                   className={buttonVariants({
-                    variant: "ghost",
+                    variant: "secondary",
                     size: "sm",
                   })}
                 >
